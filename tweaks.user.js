@@ -419,7 +419,7 @@ $('head').append('<style>\
   #guide-subs-footer-container{padding:0px;}\
   #guide-subscriptions-container .guide-item{width:100%;}\
   #guide-subscriptions-container .guide-item .display-name{width:100%;}\
-  #progress-bar{transition:height 0.3s;width:100%;height:4px;position:relative;border-top:100px solid transparent;}\
+  #progress-bar{transition:height 0.3s;width:100%;height:4px;position:relative;border-top:10px solid transparent;}\
   #pb-base-status{background:#252525;position:absolute;left:0px;top:0px;bottom:0px;width:100%}\
   #progress-bar.extended,#progress-bar:hover{height:10px;}\
   #pb-play-status{background:#b31217;position:absolute;left:0px;top:0px;bottom:0px;}\
