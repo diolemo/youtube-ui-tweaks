@@ -282,7 +282,7 @@ var execute_tweaks = function() {
     if (has_feature_enabled['video_fill']) return;
 
     // test if player code has been loaded: no ==> nevermind
-    var fullscreen_button = $('.ytp-button-fullscreen-enter');
+    var fullscreen_button = $('.ytp-fullscreen-button');
     if (!fullscreen_button.length) return;
     
     var isFullScreen = function() {
@@ -323,9 +323,18 @@ var execute_tweaks = function() {
     $(document).on('webkitfullscreenchange', handleFullScreen);
 
     var clone = fullscreen_button.clone();
-    clone.removeClass('ytp-button-fullscreen-enter');
+    clone.removeClass('ytp-fullscreen-button');
     clone.addClass('ytp-button-watch-fill'); 
-    clone.attr('aria-label', 'Fill screen');
+    clone.attr('aria-label', 'Fill window');
+    clone.attr('title', 'Fill window');
+    var rect = document.createElement('rect');
+    var rect = $(rect);
+    rect.attr('width', '12');
+    rect.attr('height', '6');
+    rect.attr('x', '12');
+    rect.attr('y', '15');
+    var svg = clone.find('svg');
+    svg.html(svg.html() + '<rect x=13 y=16 height=4 width=10 fill=#fff />');
     fullscreen_button.after(clone);
     clone.on('click', function() {
       if (is_watch_fill_enabled) {
@@ -419,12 +428,12 @@ $('head').append('<style>\
   #guide-subs-footer-container{padding:0px;}\
   #guide-subscriptions-container .guide-item{width:100%;}\
   #guide-subscriptions-container .guide-item .display-name{width:100%;}\
-  #progress-bar{transition:height 0.3s;width:100%;height:4px;position:relative;border-top:10px solid transparent;}\
+  #progress-bar{transition:height 0.3s;width:100%;height:4px;position:absolute;border-top:10px solid transparent;bottom:36px}\
   #pb-base-status{background:#252525;position:absolute;left:0px;top:0px;bottom:0px;width:100%}\
   #progress-bar.extended,#progress-bar:hover{height:10px;}\
   #pb-play-status{background:#b31217;position:absolute;left:0px;top:0px;bottom:0px;}\
   #pb-load-status{background:#444;position:absolute;left:0px;top:0px;bottom:0px;}\
-  body.watch-fill .html5-video-container{position:absolute;top:0px;right:0px;left:0px;bottom:31px!important;width:100%!important;height:auto!important;}\
+  body.watch-fill .html5-video-container{position:absolute;top:0px;right:0px;left:0px;bottom:0px!important;width:100%!important;height:auto!important;}\
   body.watch-fill .html5-video-player{position:fixed;top:0px !important;right:0px !important;left:0px !important;bottom:0px !important}\
-  .ytp-button-watch-fill{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY5RDgxRTE5OUY2NjExRTRCMkY3QUU2MzMxQjQ1MDNCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjY5RDgxRTFBOUY2NjExRTRCMkY3QUU2MzMxQjQ1MDNCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjlEODFFMTc5RjY2MTFFNEIyRjdBRTYzMzFCNDUwM0IiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjlEODFFMTg5RjY2MTFFNEIyRjdBRTYzMzFCNDUwM0IiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7KRQPTAAAAfklEQVR42uSU0QrAIAhFS/rh8DuyP65tD0prQm4IG+xCL5Fxj9eKRNTDpJxzDAbVWi+1EJwV2SEiymZrzeQQAMRhKeXs8LiEl9WNVuOPvKvPmFqzNY3hMT7cxVzhuyP/8EIZbC0xSxDzZKTVwdeRkzbM3/pt+Ok96aEW3ibAAAIuUJZeMagkAAAAAElFTkSuQmCC);}\
+  .ytp-chrome-bottom{width:auto !important;right:12px}\
 </style>');
