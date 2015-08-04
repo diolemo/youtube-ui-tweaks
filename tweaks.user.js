@@ -204,7 +204,7 @@ var execute_tweaks = function() {
 
   (function() {
 
-	if (has_feature_enabled['subs_page']) return;
+  if (has_feature_enabled['subs_page']) return;
 
     // test if subs code has been loaded: no ==> nevermind
     var right_side = $('.branded-page-related-channels');
@@ -327,12 +327,6 @@ var execute_tweaks = function() {
     clone.addClass('ytp-button-watch-fill'); 
     clone.attr('aria-label', 'Fill window');
     clone.attr('title', 'Fill window');
-    var rect = document.createElement('rect');
-    var rect = $(rect);
-    rect.attr('width', '12');
-    rect.attr('height', '6');
-    rect.attr('x', '12');
-    rect.attr('y', '15');
     var svg = clone.find('svg');
     svg.html(svg.html() + '<rect x=13 y=16 height=4 width=10 fill=#fff />');
     fullscreen_button.after(clone);
@@ -429,6 +423,7 @@ $('head').append('<style>\
   #guide-subscriptions-container .guide-item{width:100%;}\
   #guide-subscriptions-container .guide-item .display-name{width:100%;}\
   #progress-bar{transition:height 0.3s;width:100%;height:4px;position:absolute;border-top:10px solid transparent;bottom:36px}\
+  .ytp-big-mode #progress-bar{bottom:54px}\
   #pb-base-status{background:#252525;position:absolute;left:0px;top:0px;bottom:0px;width:100%}\
   #progress-bar.extended,#progress-bar:hover{height:10px;}\
   #pb-play-status{background:#b31217;position:absolute;left:0px;top:0px;bottom:0px;}\
