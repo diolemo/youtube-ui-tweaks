@@ -67,6 +67,17 @@ var execute_tweaks = function() {
   var body = $('body');
 
   // --------------------------------------------------------------------
+  // ------------------- default to the subscriptions -------------------
+  // --------------------------------------------------------------------
+    
+  $('#logo-container').attr('href', '/feed/subscriptions');
+  if (first_execute && window.location.pathname === '/' && 
+    window.location.search.length === 0) {
+    window.location.pathname = '/feed/subscriptions';
+    return;
+  }
+
+  // --------------------------------------------------------------------
   // ---------------- access player functionality -----------------------
   // --------------------------------------------------------------------
 
@@ -181,17 +192,6 @@ var execute_tweaks = function() {
   })();
 
   // --------------------------------------------------------------------
-  // ------------------- default to the subscriptions -------------------
-  // --------------------------------------------------------------------
-    
-  $('#logo-container').attr('href', '/feed/subscriptions');
-  if (first_execute && window.location.pathname === '/' && 
-    window.location.search.length === 0) {
-    window.location.pathname = '/feed/subscriptions';
-    return;
-  }
-
-  // --------------------------------------------------------------------
   // ------------------- remove notification icon -----------------------
   // --------------------------------------------------------------------
 
@@ -202,7 +202,7 @@ var execute_tweaks = function() {
   // ------------------- nicer subscriptions page -----------------------
   // --------------------------------------------------------------------
 
-  (function() {
+  setTimeout(function() {
 
   if (has_feature_enabled['subs_page']) return;
 
@@ -259,7 +259,7 @@ var execute_tweaks = function() {
 
     has_feature_enabled['subs_page'] = true;
 
-  })();
+  }, 0);
 
   // --------------------------------------------------------------------
   // ---------------- set high quality video ----------------------------
@@ -271,7 +271,7 @@ var execute_tweaks = function() {
   // ---------------- video player fill size ----------------------------
   // --------------------------------------------------------------------
 
-  (function() {
+  setTimeout(function() {
 
     // change page? add it again
     if (is_watch_fill_enabled) {
@@ -352,7 +352,7 @@ var execute_tweaks = function() {
 
     has_feature_enabled['video_fill'] = true;
 
-  })();
+  }, 0);
 
   // --------------------------------------------------------------------
   // ---------------- improvements to the watch ui ----------------------
@@ -392,43 +392,47 @@ setTimeout(execute_tweaks, 0);
 // ------------------ attach default tweaks css -----------------------
 // --------------------------------------------------------------------
 
-$('head').append('<style>\
-  .feed-author-bubble-container{display:none;}\
-  .feed-item-container .feed-item-main{margin-left:0;}\
-  .feed-item-container.legacy-style .feed-item-main{margin-left:0;}\
-  #guide-main .personal-item .guide-item{padding-right:20px;text-align:right;}\
-  #guide-main .personal-item .guide-item .thumb{display:none;}\
-  #guide-subscriptions-section h3{display:none;}\
-  #guide-subs-footer-container{padding:2px 0 8px;}\
-  .guide-sort-container{display:none;}\
-  .guide-quick-filter{width:145px!important;}\
-  .guide-count{display:none;}\
-  .guide-pinning-enabled #content{margin-left:12px;}\
-  .site-center-aligned #masthead-positioner-height-offset{height:50px;}\
-  #VLWL-guide-item{display:none;}\
-  .yt-lockup-tile .yt-lockup-title{max-width:800px;}\
-  #masthead-appbar-container{display:none;}\
-  .guide-pinning-enabled .branded-page-v2-secondary-col{max-width:250px;width:250px;}\
-  .show-guide.content-snap-width-3 #content{width:95%;}\
-  body.watch-fill #player-api{position:fixed!important;top:0px!important;left:0px!important;\
-    right:0px!important;bottom:0px!important;width:100%!important;height:100%!important;z-index:10000;}\
-  body.watch-fill{overflow:hidden;}\
-  body.watch-fill #masthead-positioner{display:none;}\
-  body.watch-fill .html5-progress-bar{width:100%!important;}\
-  body.watch-fill .html5-main-video{position:absolute;top:0px;right:0px;left:0px;bottom:0px;width:100%!important;height:100%!important;}\
-  body.watch-fill .html5-video-content{position:absolute;top:0px;right:0px;left:0px;bottom:0px;width:100%!important;height:100%!important;}\
-  .ytp-button-watch-fill{float:right!important;width:30px;height:27px;background:center 6px no-repeat;}\
-  body.watch-fill #guide,body.watch-fill #header,body.watch-fill #content{display:none;}\
-  #guide-subs-footer-container{padding:0px;}\
-  #guide-subscriptions-container .guide-item{width:100%;}\
-  #guide-subscriptions-container .guide-item .display-name{width:100%;}\
-  #progress-bar{transition:height 0.3s;width:100%;height:4px;position:absolute;border-top:10px solid transparent;bottom:36px}\
-  .ytp-big-mode #progress-bar{bottom:54px}\
-  #pb-base-status{background:#252525;position:absolute;left:0px;top:0px;bottom:0px;width:100%}\
-  #progress-bar.extended,#progress-bar:hover{height:10px;}\
-  #pb-play-status{background:#b31217;position:absolute;left:0px;top:0px;bottom:0px;}\
-  #pb-load-status{background:#444;position:absolute;left:0px;top:0px;bottom:0px;}\
-  body.watch-fill .html5-video-container{position:absolute;top:0px;right:0px;left:0px;bottom:0px!important;width:100%!important;height:auto!important;}\
-  body.watch-fill .html5-video-player{position:fixed;top:0px !important;right:0px !important;left:0px !important;bottom:0px !important}\
-  .ytp-chrome-bottom{width:auto !important;right:12px}\
-</style>');
+setTimeout(function() {
+
+  $('head').append('<style>\
+    .feed-author-bubble-container{display:none;}\
+    .feed-item-container .feed-item-main{margin-left:0;}\
+    .feed-item-container.legacy-style .feed-item-main{margin-left:0;}\
+    #guide-main .personal-item .guide-item{padding-right:20px;text-align:right;}\
+    #guide-main .personal-item .guide-item .thumb{display:none;}\
+    #guide-subscriptions-section h3{display:none;}\
+    #guide-subs-footer-container{padding:2px 0 8px;}\
+    .guide-sort-container{display:none;}\
+    .guide-quick-filter{width:145px!important;}\
+    .guide-count{display:none;}\
+    .guide-pinning-enabled #content{margin-left:12px;}\
+    .site-center-aligned #masthead-positioner-height-offset{height:50px;}\
+    #VLWL-guide-item{display:none;}\
+    .yt-lockup-tile .yt-lockup-title{max-width:800px;}\
+    #masthead-appbar-container{display:none;}\
+    .guide-pinning-enabled .branded-page-v2-secondary-col{max-width:250px;width:250px;}\
+    .show-guide.content-snap-width-3 #content{width:95%;}\
+    body.watch-fill #player-api{position:fixed!important;top:0px!important;left:0px!important;\
+      right:0px!important;bottom:0px!important;width:100%!important;height:100%!important;z-index:10000;}\
+    body.watch-fill{overflow:hidden;}\
+    body.watch-fill #masthead-positioner{display:none;}\
+    body.watch-fill .html5-progress-bar{width:100%!important;}\
+    body.watch-fill .html5-main-video{position:absolute;top:0px;right:0px;left:0px;bottom:0px;width:100%!important;height:100%!important;}\
+    body.watch-fill .html5-video-content{position:absolute;top:0px;right:0px;left:0px;bottom:0px;width:100%!important;height:100%!important;}\
+    .ytp-button-watch-fill{float:right!important;width:30px;height:27px;background:center 6px no-repeat;}\
+    body.watch-fill #guide,body.watch-fill #header,body.watch-fill #content{display:none;}\
+    #guide-subs-footer-container{padding:0px;}\
+    #guide-subscriptions-container .guide-item{width:100%;}\
+    #guide-subscriptions-container .guide-item .display-name{width:100%;}\
+    #progress-bar{transition:height 0.3s;width:100%;height:4px;position:absolute;border-top:10px solid transparent;bottom:36px}\
+    .ytp-big-mode #progress-bar{bottom:54px}\
+    #pb-base-status{background:#252525;position:absolute;left:0px;top:0px;bottom:0px;width:100%}\
+    #progress-bar.extended,#progress-bar:hover{height:10px;}\
+    #pb-play-status{background:#b31217;position:absolute;left:0px;top:0px;bottom:0px;}\
+    #pb-load-status{background:#444;position:absolute;left:0px;top:0px;bottom:0px;}\
+    body.watch-fill .html5-video-container{position:absolute;top:0px;right:0px;left:0px;bottom:0px!important;width:100%!important;height:auto!important;}\
+    body.watch-fill .html5-video-player{position:fixed;top:0px !important;right:0px !important;left:0px !important;bottom:0px !important}\
+    .ytp-chrome-bottom{width:auto !important;right:12px}\
+  </style>');
+
+}, 0);
