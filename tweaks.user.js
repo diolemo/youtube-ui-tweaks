@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name           youtube.com ui tweaks
 // @namespace      com.youtube.tweaks.ui
-// @require        http://code.jquery.com/jquery-2.1.3.min.js
+// @require        http://code.jquery.com/jquery-2.2.0.min.js
 // @include        http://*.youtube.com/*
 // @include        https://*.youtube.com/*
 // @noframes
